@@ -1,41 +1,46 @@
 //File: main.js
 
+const addButton = document.querySelector('.addButton');
 const container = document.querySelector('.container');
 var inputValue = document.querySelector('.input');
-const add = document.querySelector('.add');
 
-if(window.localStorage.getItem("todos") == undefined){
-     var todos = [];
-     window.localStorage.setItem("todos", JSON.stringify(todos));
-}
 
-var todosEX = window.localStorage.getItem("todos");
-var todos = JSON.parse(todosEX);
+// if(window.localStorage.getItem("todos") == undefined){
+//      var todos = [];
+//      window.localStorage.setItem("todos", JSON.stringify(todos));
+// }
+
+// var todosEX = window.localStorage.getItem("todos");
+// var todos = JSON.parse(todosEX);
 
 
 class item{
-	constructor(name){
-		this.createItem(name);
+  constructor(itemName) {
+    //create the item div
+		this.createDiv(itemName);
 	}
-    createItem(name){
-    	var itemBox = document.createElement('div');
-        itemBox.classList.add('item');
+  createDiv(itemName){
+    let input = document.createElement('input');
+  	input.type = "text";
+  	input.disabled = true;
+   	input.value = itemName;
+    input.classList.add('item_input');
+      
+    let itemBox = document.createElement('div');
+    itemBox
+      
+    let editButton = document.createElement('button');
+    editButton.classList.add('editButton');
 
-    	var input = document.createElement('input');
-    	input.type = "text";
-    	input.disabled = true;
-    	input.value = name;
-    	input.classList.add('item_input');
+    let removeButton = document.createElement('button');
+    removeButton.classList.add('removeButton');
+      
 
-    	var edit = document.createElement('button');
-    	edit.classList.add('edit');
+    	remove.addEventListener('click', () => this.remove(itemBox, name));
     	edit.innerHTML = "EDIT";
     	edit.addEventListener('click', () => this.edit(input, name));
 
-    	var remove = document.createElement('button');
-    	remove.classList.add('remove');
-    	remove.innerHTML = "REMOVE";
-    	remove.addEventListener('click', () => this.remove(itemBox, name));
+    	
 
     	container.appendChild(itemBox);
 
