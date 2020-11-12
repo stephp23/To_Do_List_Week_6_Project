@@ -2,7 +2,7 @@
 
 const addButton = document.querySelector('.addButton');
 const container = document.querySelector('.container');
-var inputValue = document.querySelector('.input');
+var input = document.querySelector('.input');
 
 
 // if(window.localStorage.getItem("todos") == undefined){
@@ -27,69 +27,71 @@ class item{
     input.classList.add('item_input');
       
     let itemBox = document.createElement('div');
-    itemBox
+    itemBox.classList.add('item');
       
     let editButton = document.createElement('button');
     editButton.classList.add('editButton');
+    editButton.innerHTML = "EDIT";
 
     let removeButton = document.createElement('button');
     removeButton.classList.add('removeButton');
-      
+    removeButton.innerHTML = "REMOVE";
+    
+    container.appendChild(itemBox);
 
-    	remove.addEventListener('click', () => this.remove(itemBox, name));
-    	edit.innerHTML = "EDIT";
-    	edit.addEventListener('click', () => this.edit(input, name));
+    itemBox.appendChild(input);
+    itemBox.appendChild(editButton);
+    itemBox.appendChild(removeButton);
+    
+    
+    editButton.addEventListener('click', () => this.edit(input));
+
+    removeButton.addEventListener('click', () => this.remove(itemBox));
+    	// edit.innerHTML = "EDIT";
 
     	
 
-    	container.appendChild(itemBox);
+    	
+  }
 
-        itemBox.appendChild(input);
-        itemBox.appendChild(edit);
-        itemBox.appendChild(remove);
-
-    }
-
-    edit(input, name){
-        if(input.disabled == true){
+  edit(input){
+        // if(input.disabled == true){
            input.disabled = !input.disabled;
         }
-    	else{
-            input.disabled = !input.disabled;
-            let indexof = todos.indexOf(name);
-            todos[indexof] = input.value;
-            window.localStorage.setItem("todos", JSON.stringify(todos));
-        }
-    }
+    // 	else{
+    //         input.disabled = !input.disabled;
+    //         let indexof = todos.indexOf(name);
+    //         todos[indexof] = input.value;
+    //         window.localStorage.setItem("todos", JSON.stringify(todos));
+    //     }
+    // }
 
-    remove(itemBox, name){
-        itemBox.parentNode.removeChild(itemBox);
-        let index = todos.indexOf(name);
-        todos.splice(index, 1);
-        window.localStorage.setItem("todos", JSON.stringify(todos));
-    }
+  remove(item) {
+    //     itemBox.parentNode.removeChild(itemBox);
+    //     let index = todos.indexOf(name);
+    //     todos.splice(index, 1);
+    //     window.localStorage.setItem("todos", JSON.stringify(todos));
+    // }
+    container.removeChild(item);
+  }
+
+
+
+function check(){
+	if(input.value != ""){
+		new item(input.value);
+        // todos.push(inputValue.value);
+        // window.localStorage.setItem("todos", JSON.stringify(todos));
+		input.value = "";
+	}
 }
 
-add.addEventListener('click', check);
+addButton.addEventListener('click', check);
 window.addEventListener('keydown', (e) => {
 	if(e.which == 13){
 		check();
 	}
 })
-
-function check(){
-	if(inputValue.value != ""){
-		new item(inputValue.value);
-        todos.push(inputValue.value);
-        window.localStorage.setItem("todos", JSON.stringify(todos));
-		inputValue.value = "";
-	}
-}
-
-
-for (var v = 0 ; v < todos.length ; v++){
-    new item(todos[v]);
-}
 
 
 new item("sport");

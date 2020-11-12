@@ -19,28 +19,35 @@ h1 {
   font-family: "Hind", sans-serif;
 }
 
-.title {
-  color: lime;
-  text-transform: uppercase;
+.styling {
   font-weight: 800;
+  color: lime;
 }
 
-.inputDiv {
+.input_div {
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
 }
 
-.input {
+.input_div .input {
   padding: 0.5rem 1rem;
   outline: none;
   border: none;
   height: 50px;
   border-radius: 25px;
-  width: 350px;
+  width: 450px;
   margin: 0.25rem;
   transition: 0.5s;
   font-size: 1.15rem;
+  background-color: #fff;
+}
+
+.title {
+  color: lime;
+  text-transform: uppercase;
+  font-weight: 800;
 }
 
 .add {
