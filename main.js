@@ -1,88 +1,68 @@
 //File: main.js
 
 const addButton = document.querySelector('.addButton');
+let input = document.querySelector('.input');
 const container = document.querySelector('.container');
-var input = document.querySelector('.input');
-
-
-// if(window.localStorage.getItem("todos") == undefined){
-//      var todos = [];
-//      window.localStorage.setItem("todos", JSON.stringify(todos));
-// }
-
-// var todosEX = window.localStorage.getItem("todos");
-// var todos = JSON.parse(todosEX);
-
 
 class item{
-  constructor(itemName) {
+    constructor(itemName) {
     //create the item div
-		this.createDiv(itemName);
-	}
-  createDiv(itemName){
-    let input = document.createElement('input');
-  	input.type = "text";
-  	input.disabled = true;
-   	input.value = itemName;
-    input.classList.add('item_input');
+		    this.createDiv(itemName);
+    }
+  
+    createDiv(itemName) {
+        let input = document.createElement('input');
+        input.value = itemName;
+  	    input.disabled = true;
+        input.classList.add('item_input');
+        input.type = "text";
+        
+        let itemBox = document.createElement('div');
+        itemBox.classList.add('item');
       
-    let itemBox = document.createElement('div');
-    itemBox.classList.add('item');
-      
-    let editButton = document.createElement('button');
-    editButton.classList.add('editButton');
-    editButton.innerHTML = "EDIT";
+        let editTaskButton = document.createElement('button');
+        editTaskButton.innerHTML = 'EDIT TASK (*Press Task Title)';
+        editTaskButton.classList.add('editButton');
+        
+        let removeButton = document.createElement('button');
+        removeButton.innerHTML = 'REMOVE';
+        removeButton.classList.add('removeButton');
+        
+        container.appendChild(itemBox);
 
-    let removeButton = document.createElement('button');
-    removeButton.classList.add('removeButton');
-    removeButton.innerHTML = "REMOVE";
+        itemBox.appendChild(input);
+        itemBox.appendChild(editTaskButton);
+        itemBox.appendChild(removeButton);
     
-    container.appendChild(itemBox);
-
-    itemBox.appendChild(input);
-    itemBox.appendChild(editButton);
-    itemBox.appendChild(removeButton);
-    
-    
-    editButton.addEventListener('click', () => this.edit(input));
-
-    removeButton.addEventListener('click', () => this.remove(itemBox));
-    	// edit.innerHTML = "EDIT";
-
+        editTaskButton.addEventListener('click', () => this.edit(input));
+        removeButton.addEventListener('click', () => this.remove(itemBox));
+    	  edit.innerHTML = "EDIT TASK"
     	
-
-    	
-  }
-
-  edit(input){
-        // if(input.disabled == true){
-           input.disabled = !input.disabled;
+    }
+  
+    edit(input) {
+      if(input.disabled == true){
+        input.disabled = !input.disabled;
+    }
+    	else{
+            input.disabled = !input.disabled;
+            let indexof = todos.indexOf(name);
+            todos[indexof] = input.value;
+            window.localStorage.setItem("todos", JSON.stringify(todos));
         }
-    // 	else{
-    //         input.disabled = !input.disabled;
-    //         let indexof = todos.indexOf(name);
-    //         todos[indexof] = input.value;
-    //         window.localStorage.setItem("todos", JSON.stringify(todos));
-    //     }
-    // }
+    }
 
-  remove(item) {
-    //     itemBox.parentNode.removeChild(itemBox);
-    //     let index = todos.indexOf(name);
-    //     todos.splice(index, 1);
-    //     window.localStorage.setItem("todos", JSON.stringify(todos));
-    // }
-    container.removeChild(item);
-  }
+    remove(item) {
+        container.removeChild(item);
+    }
+}
 
-
-
-function check(){
+function check() {
 	if(input.value != ""){
-		new item(input.value);
-        // todos.push(inputValue.value);
-        // window.localStorage.setItem("todos", JSON.stringify(todos));
-		input.value = "";
+		  new item(input.value);
+        todos.push(inputValue.value);
+        window.localStorage.setItem("todos", JSON.stringify(todos));
+		  input.value = "";
 	}
 }
 
@@ -94,4 +74,4 @@ window.addEventListener('keydown', (e) => {
 })
 
 
-new item("sport");
+new item("JS Week 6 Tech Project");
