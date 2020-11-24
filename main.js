@@ -25,7 +25,7 @@ class item{
         editTaskButton.classList.add('editButton');
         
         let removeButton = document.createElement('button');
-        removeButton.innerHTML = 'REMOVE';
+        removeButton.innerHTML = 'REMOVE TASK';
         removeButton.classList.add('removeButton');
         
         container.appendChild(itemBox);
